@@ -17,6 +17,7 @@ class Blog extends Model
         'title',
         'containt',
         'epilog',
+        'image',
         'views',
         'user_id'
     ];

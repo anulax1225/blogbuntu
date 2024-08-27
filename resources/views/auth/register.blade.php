@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('base.layout')
 
-@section('body')
+@section('content')
     <h1>Register</h1>
     <form action="/register" method="post">
         @csrf

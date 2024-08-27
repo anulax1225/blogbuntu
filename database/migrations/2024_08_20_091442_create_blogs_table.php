@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('epilog', 350)->nullable();
             $table->longText('containt')->nullable();
             $table->unsignedBigInteger('views')->default(0);
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

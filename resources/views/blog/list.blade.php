@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('base.layout')
 
-@section('body')
-    <div class="blogs-block">
+@section('content')
+    <div class="w-full mx-2 grid grid-cols-2">
         @foreach($blogs as $blog)
             @include('blog.view')
         @endforeach

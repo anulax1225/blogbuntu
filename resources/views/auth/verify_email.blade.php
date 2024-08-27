@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('base.layout')
 
-@section('body')
+@section('content')
     <div>
         <h1>Email verification</h1>
         

@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('base.layout')
 
-@section('body')
+@section('content')
     @vite('resources/js/user.js')
     <h1>{{ $user->username }}</h1>
     <p>Name : {{ $user->name }}</p>

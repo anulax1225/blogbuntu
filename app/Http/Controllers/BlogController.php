@@ -8,6 +8,7 @@ use App\Models\User;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -42,10 +43,12 @@ class BlogController extends Controller
         try {
             $blog->likes()->attach(request()->user()->id);
         } catch(QueryException $e) {
-            return response('', 400);
+            return redirect('/blog/' . $id)->withErrors([
+                "error" => "Blog already liked"
+            ]);
         }
          
-        return response('', 200);
+        return redirect('/blog/' . $id);
     }
 
     public function create()
@@ -60,14 +63,29 @@ class BlogController extends Controller
         ]);
 
         $id = request()->user()->id;
+
+        $image = BlogController::getRequestImage();
+
         $blog = Blog::create([
             'title' => request('title'),
             'containt' => request('containt'),
             'epilog' => request('epilog'),
+            'image' => $image,
             'user_id' => $id,
         ]);
 
         return redirect('/blog/' . $blog->id);
+    }
+
+    private static function getRequestImage()
+    {
+        if(request()->hasFile('image'))
+        {
+            $hash = request()->file('image')->hashName();
+            request()->file('image')->store('public/images/blog');
+            return $hash;
+        }
+        else return "";
     }
 
     public function delete($id)
@@ -90,9 +108,12 @@ class BlogController extends Controller
         if (!$blog) return response('', 404);
         if (request()->user()->id != $blog->user->id) return response('', 401);
 
+        $image = BlogController::getRequestImage();
+
         $blog->title = request('title');
         $blog->containt = request('containt');
         $blog->epilog = request('epilog');
+        if($image) $blog->image = $image;
         $blog->save();
 
         return response('', 200);
