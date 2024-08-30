@@ -7,7 +7,7 @@
     <title>BlogBuntu</title>
     @vite('resources/css/app.css')
 </head>
-<body class="w-full flex p-0 m-0 bg-white dark:bg-black text-black dark:text-white">
+<body class="w-full flex h-screen overflow-y-hidden bg-white dark:bg-black text-black dark:text-white">
     @include('base.menu')
     @include('base.errors')
     @yield("content")

@@ -1,5 +1,5 @@
 <div class="grid grid-cols-3 w-full bg-white dark:bg-black  hover:bg-gray-300  dark:hover:bg-gray-900 h-fit rounded-xl p-2 mt-5">
-    <a class="row-span-2 m-auto h-[150px] w-[266px] w-max-[266px] bg-black dark:bg-white rounded-xl" href="/blog/{{ $blog->id }}">
+    <a class="row-span-2 m-auto h-[150px] w-[266px] w-max-[266px] bg-black dark:bg-white rounded-xl overflow-hidden" href="/blog/{{ $blog->id }}">
         @if($blog->image)
             <img class="h-[150px] w-min w-max-[266px] m-auto" 
             src="{{ asset('storage/images/blog/' . $blog->image) }}" alt="{{ $blog->image }}">

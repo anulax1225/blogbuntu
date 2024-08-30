@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
     addEvent(likeBtn, (btn) => {
         btn.addEventListener("click", (e) => {
             e.preventDefault();
-            let id = document.querySelector(".btn-like").getAttribute("data-id");
+            let id = e.target.getAttribute("data-id");
             let token = document.querySelector('input[name=_token]').value;
             fetch(`/blog/like/${id}`, {
                 method: "POST",
@@ -64,7 +64,7 @@ window.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             let id = e.target.getAttribute("data-id");
             let token = document.querySelector('input[name=_token]').value;
-            let form = document.querySelector('.update-form');
+            let form = document.querySelector('#update-form');
             let formData = new FormData(form);
             fetch(`/blog/${id}`, {
                 method: "POST",
@@ -72,8 +72,6 @@ window.addEventListener("DOMContentLoaded", () => {
                     "X-CSRF-Token": token
                 },
                 body: formData
-            }).then((res) => {
-                window.location.href = "/blog/" + id;
             });
         });
     });

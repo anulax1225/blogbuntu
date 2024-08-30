@@ -9,6 +9,7 @@ use GrahamCampbell\ResultType\Success;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class BlogController extends Controller
 {
@@ -47,7 +48,6 @@ class BlogController extends Controller
                 "error" => "Blog already liked"
             ]);
         }
-         
         return redirect('/blog/' . $id);
     }
 
@@ -65,14 +65,17 @@ class BlogController extends Controller
         $id = request()->user()->id;
 
         $image = BlogController::getRequestImage();
-
+        
+        Log::info($image);
+        Log::info("Helllo");
         $blog = Blog::create([
             'title' => request('title'),
             'containt' => request('containt'),
             'epilog' => request('epilog'),
-            'image' => $image,
             'user_id' => $id,
         ]);
+        if($image) $blog->image = $image;
+        $blog->save();
 
         return redirect('/blog/' . $blog->id);
     }

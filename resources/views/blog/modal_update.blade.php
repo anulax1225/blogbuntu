@@ -1,13 +1,23 @@
-<dialog id="modal-update"  modal-disable>
-    <button class="close-modal">Cancel</button>
-    <form class="update-form">
+<dialog id="modal-update" modal-disable
+class="modal w-2/3 p-10 border rounded-lg border-black dark:border-white dark:bg-black dark:text-white">
+    <div class="flex flex-row-reverse">
+        <button id="close-modal" class="rounded-lg bg-red-500 text-white p-2 w-fit">Cancel</button>
+    </div>
+    <h1 class="text-6xl font-bold  pb-3 mb-5 border-b border-black dark:border-white">Update blog</h1>
+    <form id="update-form" class="flex flex-col items-center">
+        <div class="grid grid-cols-4 w-full">
+            <p>Title</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black"
+            name="title" type="text" value="{{ old('title') ?  old('title') : $blog->title }}">
+            <p>Image</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black"
+            name="image" type="file" value="{{ old('image') ?  old('image') : $blog->image  }}">
+            <p>Epilog</p><textarea class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black"
+            name="epilog" type="text">{{ old('epilog') ? old('epilog') : $blog->epilog }}</textarea>
+            <p>Content</p><textarea class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black"
+            name="containt" type="text">{{ old('containt') ? old('containt') : $blog->containt }}</textarea>
+        </div>
+        <button id="btn-blog-update" data-id="{{$blog->id}}"
+        class="rounded-lg bg-blue-500 text-white p-2 w-fit">Update</button>
         @csrf
-        <p>Title</p><input name="title" type="text" value="{{ old('title') ?  old('title') : $blog->title }}">
-        <p>Image</p><input name="image" type="file" value="{{ old('image') ?  old('image') : $blog->image  }}">
-        <p>Epilog</p><textarea name="epilog" type="text">{{ old('epilog') ? old('epilog') : $blog->epilog }}</textarea>
-        <p>Content</p><textarea name="containt" type="text">{{ old('containt') ? old('containt') : $blog->containt }}</textarea>
-        <br>
-        <button class="btn btn-blog-update" data-id="{{$blog->id}}">Update</button>
     </form>
 
 </dialog>
