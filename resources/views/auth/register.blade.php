@@ -6,13 +6,13 @@
             <h1 class="text-6xl font-bold  pb-3 mb-5 border-b border-black dark:border-white">Register</h1>
             <form action="/register" method="post" class="flex flex-col items-center">
                 <div class="grid grid-cols-4 w-full">
-                    <p>Username :</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black"
+                    <p>Username :</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black focus:animate-pulse"
                     name="username" type="text" value="{{ old('username') }}">
-                    <p>Name (Optional):</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black"
+                    <p>Name (Optional):</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black focus:animate-pulse"
                     name="name" type="text" value="{{ old('name') }}">
-                    <p>Email :</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black"
+                    <p>Email :</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black focus:animate-pulse"
                     name="email" type="email" value="{{ old('email') }}">
-                    <p>Description (Optional):</p><textarea class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black"
+                    <p>Description (Optional):</p><textarea class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black focus:animate-pulse"
                     name="description" type="text">{{ old('description') }}</textarea>
                     <p>Password :</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black"
                     name="password" type="password" >
@@ -20,6 +20,11 @@
                 @csrf
                 <button type="submit" class="rounded-lg bg-blue-500 text-white p-2 w-fit">Send</button>
             </form>
+            <div class=" w-full flex justify-center mt-10">
+                <p class="mr-5">Other Connection methods :</p>
+                <a class="mr-5" href="/redirect/github">Github</a>
+                <a class="mr-5" href="/redirect/kainoo-sso">Kainoo SSO</a>
+            </div>
         </div>
     </div>
 @endsection

@@ -5,8 +5,8 @@
     <div class="w-full h-screen overflow-y-auto">
         <div class="w-full flex flex-col pt-10 items-center px-[200px]">
             <div class="w-full flex justify-between mb-8">
-                @csrf
                 <div>
+                    @csrf
                     @if(request()->user() && $blog->user->id == request()->user()->id)
                         <button id="open-modal" class="rounded-lg bg-blue-500 text-white p-2 w-fit">Update</button>
                         <button id="btn-blog-delete" class="rounded-lg bg-red-500 text-white p-2 w-fit" 

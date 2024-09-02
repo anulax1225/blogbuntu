@@ -1,8 +1,5 @@
 import './bootstrap';
-
-function addEvent(btn, func) {
-    if(btn) func(btn);
-}
+import { addEvent } from "./commun"
 
 window.addEventListener("DOMContentLoaded", () => {
     let modal = document.querySelector('#modal-update');
@@ -22,11 +19,13 @@ window.addEventListener("DOMContentLoaded", () => {
                 method: "POST",
                 headers: {
                     "X-CSRF-Token": token
+                },
+            }).then(response => {
+                if (response.redirected) {
+                  window.location.href = response.url; 
+                  return;
                 }
-            }).then((res) => {
-                if (res.status === 400) alert("Couldn't follow this user");
-                //else window.location.href = "/profile/" + id;
-            });
+              });
         });
     });
 
@@ -39,11 +38,12 @@ window.addEventListener("DOMContentLoaded", () => {
                 method: "POST",
                 headers: {
                     "X-CSRF-Token": token
+                },
+            }).then(response => {
+                if (response.redirected) {
+                  window.location.href = response.url; 
                 }
-            }).then((res) => {
-                if (res.status === 400) alert(res.value);
-                else window.location.href = "/blog/" + id;
-            });
+              });
         });
     });
 
@@ -71,8 +71,12 @@ window.addEventListener("DOMContentLoaded", () => {
                 headers: {
                     "X-CSRF-Token": token
                 },
-                body: formData
-            });
+                body: formData,
+            }).then(response => {
+                if (response.redirected) {
+                  window.location.href = response.url; 
+                }
+              });
         });
     });
 
@@ -85,10 +89,12 @@ window.addEventListener("DOMContentLoaded", () => {
                 method: "DELETE",
                 headers: {
                     "X-CSRF-Token": token
+                },
+            }).then(response => {
+                if (response.redirected) {
+                  window.location.href = response.url; 
                 }
-            }).then((res) => {
-                window.location.href = "/blogs"
-            });
+              });
         });
     });
 })

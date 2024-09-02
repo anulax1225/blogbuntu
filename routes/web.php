@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,10 @@ Route::post('/email/verification-notification', [ RegisterController::class, 'se
 
 Route::get('/login', [ LoginController::class, 'index' ]);
 Route::post('/login', [ LoginController::class, 'login' ]);
-Route::get('/logout', [ LoginController::class, 'logout' ])->middleware([ 'App\Http\Middleware\UserAuthMiddleware', 'verified' ]);
+Route::get('/logout', [ LoginController::class, 'logout' ])->middleware([ 'App\Http\Middleware\UserAuthMiddleware' ]);
+
+Route::get('/redirect/{provider}', [ SocialiteController::class, 'redirect' ]);
+Route::get('/callback/{provider}', [ SocialiteController::class, 'callback' ]);
 
 Route::get('/profile/{id}', [ UserController::class, 'profile' ]);
 Route::get('/myprofile', [ UserController::class, 'myProfile' ])->middleware([ 'App\Http\Middleware\UserAuthMiddleware', 'verified' ]);
@@ -37,10 +41,9 @@ Route::post('/follow/{id}', [ UserController::class, 'follow' ])->middleware([ '
 Route::post('/user/{id}', [ UserController::class, 'update' ])->middleware([ 'App\Http\Middleware\UserAuthMiddleware', 'verified' ]);
 Route::delete('/user/{id}',  [ UserController::class, 'delete' ])->middleware([ 'App\Http\Middleware\UserAuthMiddleware', 'verified' ]);
 
-Route::get('/blogs', [ BlogController::class, 'list' ]);
 Route::get('/blog/create', [ BlogController::class, 'create' ])->middleware([ 'App\Http\Middleware\UserAuthMiddleware', 'verified' ]);
 Route::get('/blog/{id}', [ BlogController::class, 'single' ]);
-Route::post('/blog', [ BlogController::class, 'insert' ])->middleware([ 'App\Http\Middleware\UserAuthMiddleware', 'verified' ]);
 Route::post('/blog/like/{id}', [ BlogController::class, 'like' ])->middleware([ 'App\Http\Middleware\UserAuthMiddleware', 'verified' ]);
+Route::post('/blog', [ BlogController::class, 'store' ])->middleware([ 'App\Http\Middleware\UserAuthMiddleware', 'verified' ]);
 Route::post('/blog/{id}', [ BlogController::class, 'update' ])->middleware([ 'App\Http\Middleware\UserAuthMiddleware', 'verified' ]);
 Route::delete('/blog/{id}', [ BlogController::class, 'delete' ])->middleware([ 'App\Http\Middleware\UserAuthMiddleware', 'verified' ]);

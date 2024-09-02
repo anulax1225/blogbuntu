@@ -6,9 +6,9 @@
             <h1 class="text-6xl font-bold  pb-3 mb-5 border-b border-black dark:border-white">Login</h1>
             <form action="/login" method="post" class="flex flex-col items-center">
                 <div class="grid grid-cols-4 w-full">
-                    <p>Email :</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black"
+                    <p>Email :</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black focus:animate-pulse"
                     name="email" type="email" value="{{ old('email') }}">
-                    <p>Password :</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black"
+                    <p>Password :</p><input class="border border-gray-300 rounded-lg col-span-3 mb-5 p-2 dark:bg-black focus:animate-pulse"
                     name="password" type="password">
                 </div>
                 @csrf

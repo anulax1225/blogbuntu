@@ -56,7 +56,7 @@ class BlogController extends Controller
         return view('blog.create');
     }
 
-    public function insert()
+    public function store()
     {
         request()->validate([
             'title' => 'required',
@@ -65,9 +65,7 @@ class BlogController extends Controller
         $id = request()->user()->id;
 
         $image = BlogController::getRequestImage();
-        
-        Log::info($image);
-        Log::info("Helllo");
+        dd($image);
         $blog = Blog::create([
             'title' => request('title'),
             'containt' => request('containt'),
@@ -97,7 +95,7 @@ class BlogController extends Controller
         if (!$blog) return response('', 404);
         if (request()->user()->id != $blog->user->id) return response('', 401);
         $blog->delete();
-        return response('', 200);
+        return redirect('/');
     }
 
     public function update($id)
@@ -112,13 +110,13 @@ class BlogController extends Controller
         if (request()->user()->id != $blog->user->id) return response('', 401);
 
         $image = BlogController::getRequestImage();
-
+        dd($image);
         $blog->title = request('title');
         $blog->containt = request('containt');
         $blog->epilog = request('epilog');
         if($image) $blog->image = $image;
         $blog->save();
 
-        return response('', 200);
+        return redirect('/blog/' . $id);
     }
 }

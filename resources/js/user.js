@@ -1,8 +1,5 @@
 import './bootstrap';
-
-function addEvent(btn, func) {
-    if(btn) func(btn);
-}
+import { darkMode, addEvent } from "./commun"
 
 window.addEventListener("DOMContentLoaded", () => {
     let modal = document.querySelector('#modal-update');
@@ -11,6 +8,22 @@ window.addEventListener("DOMContentLoaded", () => {
     let deleteUserBtn = document.querySelector("#btn-user-delete");
     let updateUserBtn = document.querySelector("#btn-user-update");
     let followBtn = document.querySelector("#btn-follow");
+    let darkModeToggle = document.querySelector("#dark-mode-toggle");
+
+    if (localStorage.getItem("darkMode") && localStorage.getItem("darkMode") === "yes") {
+        darkModeToggle.checked = true
+    } else {
+        darkModeToggle.checked = false
+    }
+
+    addEvent(darkModeToggle, (btn) => btn.addEventListener("change", function() {
+        console.log("coucou")
+        if (this.checked){
+            darkMode(true);
+        } else {
+            darkMode(false);
+        }
+    }));
 
     addEvent(followBtn, (btn) => {
         btn.addEventListener("click", (e) => {

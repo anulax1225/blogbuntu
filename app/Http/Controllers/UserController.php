@@ -42,8 +42,20 @@ class UserController extends Controller
         $user->username = request('username');
         $user->name = request('name');
         $user->description = request('description');
+        $user->image = UserController::getRequestImage();
         $user->save();
         return response('', 200);
+    }
+
+    private static function getRequestImage()
+    {
+        if(request()->hasFile('image'))
+        {
+            $hash = request()->file('image')->hashName();
+            request()->file('image')->store('public/images/profile');
+            return $hash;
+        }
+        else return "";
     }
 
     public function follow($id)

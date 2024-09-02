@@ -13,6 +13,17 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'kainoo-sso' => [
+        'client_id' => env('KAINOO_SSO_CLIENT_ID'),
+        'client_secret' => env('KAINOO_SSO_CLIENT_SECRET'),
+        'redirect' => env('KAINOO_SSO_CLIENT_CALLBACK')
+    ],
+
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect' => env('GITHUB_CLIENT_CALLBACK')
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
