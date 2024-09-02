@@ -61,14 +61,14 @@ class UserController extends Controller
     public function follow($id)
     {
         $user = User::find($id);
-        if (!$user) return response('', 404);
-        if (request()->user()->id == $user->id) return response('', 400);
+        if (!$user) return redirect("/");
+        if (request()->user()->id == $user->id) return redirect("/profile/" . $id);
         try {
             $user->followed()->attach(request()->user()->id);
         } catch(QueryException $e) {
-            return response($e, 400);
+            return redirect("/profile/" . $id);
         }
-        return response('', 200);
+        return redirect("/profile/" . $id);
     }
 }
 

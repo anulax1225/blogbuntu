@@ -11,20 +11,21 @@
                         <button id="open-modal" class="rounded-lg bg-blue-500 text-white p-2 w-fit">Update</button>
                         <button id="btn-blog-delete" class="rounded-lg bg-red-500 text-white p-2 w-fit" 
                         data-id="{{$blog->id}}">Delete</button>
-                        @include('blog.modal_update')  
-                    @else 
-                        <button id="btn-follow" class="rounded-lg bg-blue-500 text-white p-2 w-fit" 
-                        data-id="{{$blog->user->id}}">Follow</button>
+                        @include('blog.modal_update') 
                     @endif
                 </div>
                 <div class="flex">
                     <div class="flex justify-around items-center mr-5">
                         <p class="text-lg">{{ $blog->views }} views</p>
                     </div>
-                    <div class="flex justify-around items-center bg-gray-200 dark:bg-gray-800 px-3 py-1 rounded-lg">
+                    <div class="flex justify-around items-center bg-gray-200 dark:bg-gray-800 px-3 py-1 rounded-lg mr-4">
                         <p class="text-lg mr-2">{{ $blog->likes()->count() }}</p>
                         <button id="btn-like" data-id="{{$blog->id}}"><img class="w-[30px]" data-id="{{$blog->id}}" src="/img/like_icon.svg"></button>
                     </div>
+                    @if(request()->user() && $blog->user->id != request()->user()->id)
+                        <button id="btn-follow" class="rounded-lg bg-blue-500 text-white p-2 w-fit" 
+                        data-id="{{$blog->user->id}}">Follow</button>
+                    @endif
                 </div>
             </div>
             <div class="w-full flex flex-col items-center">

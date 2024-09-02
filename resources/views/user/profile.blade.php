@@ -43,7 +43,8 @@
                 id="btn-user-delete" data-id="{{$user->id}}">Delete</button>
                 @include('user.modal_update')
             </div>
-            @else 
+            @else
+                <div></div> 
                 <button class="rounded-lg bg-blue-500 text-white p-2 w-fit mr-2"
                 id="btn-follow" data-id="{{$user->id}}">Follow</button>
             @endif

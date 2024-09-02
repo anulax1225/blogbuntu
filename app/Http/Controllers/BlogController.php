@@ -65,7 +65,6 @@ class BlogController extends Controller
         $id = request()->user()->id;
 
         $image = BlogController::getRequestImage();
-        dd($image);
         $blog = Blog::create([
             'title' => request('title'),
             'containt' => request('containt'),
@@ -110,7 +109,6 @@ class BlogController extends Controller
         if (request()->user()->id != $blog->user->id) return response('', 401);
 
         $image = BlogController::getRequestImage();
-        dd($image);
         $blog->title = request('title');
         $blog->containt = request('containt');
         $blog->epilog = request('epilog');
