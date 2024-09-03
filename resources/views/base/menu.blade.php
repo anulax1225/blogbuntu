@@ -1,4 +1,4 @@
-<nav class="flex flex-col justify-between w-fit h-full bg-white border-black pb-10 px-3
+<nav class="flex flex-col justify-between w-fit h-full bg-white border-black pb-10 px-1
 dark:bg-black border-r  dark:border-white">
         <a href="/" class="w-full flex justify-center mb-12">
             <img class="size-[6rem] mx-auto" src="/img/blog_logo.webp">
